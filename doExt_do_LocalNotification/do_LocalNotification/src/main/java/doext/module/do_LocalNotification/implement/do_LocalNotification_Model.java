@@ -29,7 +29,6 @@ import core.interfaces.DoIScriptEngine;
 import core.object.DoInvokeResult;
 import core.object.DoSingletonModule;
 import doext.module.do_LocalNotification.define.do_LocalNotification_IMethod;
-import doext.module.do_LocalNotification.implement.keeplive.KeepLiveManager;
 import doext.module.do_LocalNotification.implement.service.MyService;
 
 /**
@@ -54,7 +53,6 @@ public class do_LocalNotification_Model extends DoSingletonModule implements do_
 		sp = mActivity.getSharedPreferences("do_LocalNotification_NotifyID", Context.MODE_PRIVATE);
 		
 		mActivity.startService(new Intent(mActivity, MyService.class));
-		KeepLiveManager.startJobScheduler(mActivity);
 	}
 
 	/**

@@ -15,7 +15,6 @@ import doext.module.do_LocalNotification.implement.keeplive.KeepLiveManager;
 
 public class MyService extends Service {
     private ChangeReceiver mReceiver;
-
     public IBinder onBind(Intent intent) {
         return null;
     }
@@ -29,11 +28,6 @@ public class MyService extends Service {
 
         this.registerReceiver(mReceiver, f0);
         this.registerReceiver(mReceiver, f1);
-    }
-
-    @Override
-    public void onStart(Intent intent, int startId) {
-        super.onStart(intent, startId);
     }
 
     @Override
