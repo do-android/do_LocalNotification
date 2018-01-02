@@ -56,14 +56,6 @@
             android:name="doext.module.do_LocalNotification.implement.do_LocalNotificationReceiver"
             android:process=":remote"></receiver>
 
-        <Activity
-            android:name="doext.module.do_LocalNotification.implement.keeplive.KeepLiveActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|navigation"
-            android:excludeFromRecents="true"
-            android:exported="false"
-            android:finishOnTaskLaunch="false"
-            android:launchMode="singleInstance"
-            android:theme="@style/LiveActivityStyle"></Activity>
     </application>
 
 </manifest>

@@ -2,19 +2,14 @@ package doext.module.do_LocalNotification.implement.service;
 
 import android.app.Notification;
 import android.app.Service;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 
-import doext.module.do_LocalNotification.implement.keeplive.KeepLiveManager;
 
 
 public class MyService extends Service {
-    private ChangeReceiver mReceiver;
     public IBinder onBind(Intent intent) {
         return null;
     }
@@ -22,19 +17,10 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         keepAlive();
-        mReceiver = new ChangeReceiver();
-        IntentFilter f0 = new IntentFilter("android.intent.action.SCREEN_ON");
-        IntentFilter f1 = new IntentFilter("android.intent.action.SCREEN_OFF");
-
-        this.registerReceiver(mReceiver, f0);
-        this.registerReceiver(mReceiver, f1);
     }
 
     @Override
     public void onDestroy() {
-        if (mReceiver != null) {
-            this.unregisterReceiver(mReceiver);
-        }
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             /**被关闭时再启动服务，确保不被杀死*/
             @Override
@@ -47,17 +33,6 @@ public class MyService extends Service {
             }
         }, 100);
         super.onDestroy();
-    }
-
-    class ChangeReceiver extends BroadcastReceiver {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action.equals("android.intent.action.SCREEN_ON")) {// 屏幕点亮
-                KeepLiveManager.finishKeepLiveActivity();
-            } else if (action.equals("android.intent.action.SCREEN_OFF")) {
-                KeepLiveManager.startKeepLiveActivity(context);
-            }
-        }
     }
 
 
