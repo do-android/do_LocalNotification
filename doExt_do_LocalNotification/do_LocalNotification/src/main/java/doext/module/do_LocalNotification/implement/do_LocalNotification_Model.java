@@ -30,6 +30,7 @@ import core.object.DoInvokeResult;
 import core.object.DoSingletonModule;
 import doext.module.do_LocalNotification.define.do_LocalNotification_IMethod;
 import doext.module.do_LocalNotification.implement.service.MyService;
+import doext.module.do_LocalNotification.implement.service.MyService2;
 
 /**
  * 自定义扩展SM组件Model实现，继承DoSingletonModule抽象类，并实现LocalNotification_IMethod接口方法；
@@ -53,6 +54,7 @@ public class do_LocalNotification_Model extends DoSingletonModule implements do_
 		sp = mActivity.getSharedPreferences("do_LocalNotification_NotifyID", Context.MODE_PRIVATE);
 		
 		mActivity.startService(new Intent(mActivity, MyService.class));
+		mActivity.startService(new Intent(mActivity, MyService2.class));
 	}
 
 	/**
